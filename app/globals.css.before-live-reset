@@ -12815,788 +12815,1401 @@ header.stella-navbar .stella-navbar-launch {
 }
 
 /* =========================================================
-   LIVE — CAMERA / SIDEBAR BALANCE
-   Actual DOM:
-   live-workspace
-   ├── camera viewport
-   └── analysis-column
-       ├── analysis-card
-       ├── guidance-card
-       └── control-grid
+   STELLA — FINAL ROUTE TOPBAR NORMALIZATION
+   Neutralizes legacy floating navigation generations.
    ========================================================= */
 
-.live-page .live-workspace {
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) 370px !important;
-  grid-template-rows: auto auto !important;
-  column-gap: 18px !important;
-  row-gap: 14px !important;
-  align-items: start !important;
-  height: auto !important;
-  min-height: 0 !important;
-}
+html body .live-page .live-topbar,
+html body .simulations-page .live-topbar,
+html body .simulation-page .live-topbar {
+  position: relative !important;
+  inset: auto !important;
 
-/* Promote the sidebar's children into the workspace grid. */
-.live-page .live-workspace > .analysis-column {
-  display: contents !important;
-}
+  top: auto !important;
+  right: auto !important;
+  bottom: auto !important;
+  left: auto !important;
 
-/* Camera stays in the left column. */
-.live-page .live-workspace > .camera-stage {
-  grid-column: 1 !important;
-  grid-row: 1 !important;
-  width: 100% !important;
-  height: auto !important;
-  min-height: 0 !important;
-}
-
-/* Mission / perception cards remain on the right. */
-.live-page .live-workspace > .analysis-column > .analysis-card {
-  grid-column: 2 !important;
-  grid-row: 1 !important;
-  width: 100% !important;
-  height: auto !important;
-  min-height: 0 !important;
-}
-
-/* Guidance follows the analysis card on the right. */
-.live-page .live-workspace > .analysis-column > .guidance-card {
-  grid-column: 2 !important;
-  grid-row: 2 !important;
-  width: 100% !important;
-  height: auto !important;
-  min-height: 0 !important;
-}
-
-/* ACTUAL BUTTON WRAPPER — directly beneath camera. */
-.live-page .live-workspace > .analysis-column > .control-grid {
-  grid-column: 1 !important;
-  grid-row: 2 !important;
+  transform: none !important;
 
   width: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
+  max-width: 1500px !important;
+  height: 86px !important;
 
-  align-self: start !important;
-}
-
-/* Keep the buttons compact and evenly distributed. */
-.live-page .live-workspace > .analysis-column > .control-grid .control-button {
-  min-height: 44px !important;
-}
-
-/* Don't let the sidebar create phantom workspace height. */
-.live-page .live-workspace > .analysis-column {
-  position: static !important;
-  height: auto !important;
-  min-height: 0 !important;
-}
-
-/* Stats/event stream comes immediately after the workspace. */
-.live-page .perception-strip {
-  margin-top: 16px !important;
-}
-
-.live-page .event-console {
-  margin-top: 14px !important;
-}
-
-@media (max-width: 900px) {
-  .live-page .live-workspace {
-    display: block !important;
-  }
-
-  .live-page .live-workspace > .analysis-column {
-    display: block !important;
-  }
-
-  .live-page .live-workspace > .analysis-column > .control-grid {
-    margin-top: 14px !important;
-  }
-}
-
-/* =========================================================
-   STELLA — SIMULATION LAB FINAL UI
-   Uses the ACTUAL classes in app/simulations/page.tsx
-   ========================================================= */
-
-html body .simulations-page {
-  width: 100% !important;
-  min-height: 100vh !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background: #050505 !important;
-  color: #f3f1eb !important;
-  overflow-x: hidden !important;
-}
-
-/* ---------- MAIN SHELL ---------- */
-
-html body .simulations-page .simulation-shell {
-  width: min(1420px, calc(100% - 72px)) !important;
-  max-width: 1420px !important;
   margin: 0 auto !important;
-  padding: 170px 0 140px !important;
-}
-
-/* ---------- HERO ---------- */
-
-html body .simulations-page .simulation-hero {
-  width: 100% !important;
-  min-height: 520px !important;
-  padding: 70px 0 90px !important;
-  margin: 0 !important;
-
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) 280px !important;
-  gap: 80px !important;
-  align-items: end !important;
-}
-
-html body .simulations-page .simulation-hero .live-eyebrow {
-  display: block !important;
-  margin: 0 0 28px !important;
-
-  color: rgba(243,241,235,.48) !important;
-  font-family: var(--font-geist-mono), "IBM Plex Mono", monospace !important;
-  font-size: 10px !important;
-  line-height: 1.2 !important;
-  letter-spacing: .16em !important;
-  text-transform: uppercase !important;
-}
-
-html body .simulations-page .simulation-hero h1 {
-  display: block !important;
-  margin: 0 !important;
-
-  color: #f3f1eb !important;
-  font-family: "Cormorant Garamond", Georgia, serif !important;
-  font-size: clamp(76px, 9vw, 138px) !important;
-  font-weight: 500 !important;
-  letter-spacing: -.055em !important;
-  line-height: .78 !important;
-}
-
-html body .simulations-page .simulation-hero h1 span {
-  display: block !important;
-  color: rgba(243,241,235,.25) !important;
-}
-
-html body .simulations-page .simulation-hero p {
-  max-width: 780px !important;
-  margin: 42px 0 0 !important;
-
-  color: rgba(243,241,235,.58) !important;
-  font-family: inherit !important;
-  font-size: 16px !important;
-  line-height: 1.75 !important;
-}
-
-/* ---------- HERO META ---------- */
-
-html body .simulations-page .simulation-hero-meta {
-  align-self: end !important;
-  text-align: right !important;
-  padding-bottom: 8px !important;
-}
-
-html body .simulations-page .simulation-hero-meta > * {
-  display: block !important;
-}
-
-html body .simulations-page .simulation-hero-meta strong {
-  margin-top: 12px !important;
-
-  color: rgba(243,241,235,.22) !important;
-  font-family: "Cormorant Garamond", Georgia, serif !important;
-  font-size: 86px !important;
-  font-weight: 500 !important;
-  line-height: .8 !important;
-  letter-spacing: -.04em !important;
-}
-
-html body .simulations-page .simulation-hero-meta span,
-html body .simulations-page .simulation-hero-meta small {
-  color: rgba(243,241,235,.38) !important;
-  font-family: var(--font-geist-mono), "IBM Plex Mono", monospace !important;
-  font-size: 9px !important;
-  letter-spacing: .14em !important;
-  text-transform: uppercase !important;
-}
-
-/* ---------- ANALYSIS NOTICE ---------- */
-
-html body .simulations-page .simulation-notice {
-  width: 100% !important;
-  margin: 0 !important;
-  padding: 25px 0 !important;
-
-  display: grid !important;
-  grid-template-columns: 220px minmax(0,1fr) !important;
-  gap: 40px !important;
-
-  border-top: 1px solid rgba(243,241,235,.14) !important;
-  border-bottom: 1px solid rgba(243,241,235,.14) !important;
-}
-
-html body .simulations-page .simulation-notice > * {
-  min-width: 0 !important;
-}
-
-html body .simulations-page .simulation-notice span,
-html body .simulations-page .simulation-notice .notice-label {
-  color: rgba(243,241,235,.38) !important;
-  font-family: var(--font-geist-mono), "IBM Plex Mono", monospace !important;
-  font-size: 10px !important;
-  letter-spacing: .15em !important;
-  text-transform: uppercase !important;
-}
-
-html body .simulations-page .simulation-notice p {
-  margin: 0 !important;
-  max-width: 850px !important;
-
-  color: rgba(243,241,235,.58) !important;
-  font-size: 14px !important;
-  line-height: 1.7 !important;
-}
-
-/* ---------- ARCHIVE HEADER ---------- */
-
-html body .simulations-page .simulation-grid {
-  width: 100% !important;
-  margin: 72px 0 0 !important;
-
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0,1fr)) !important;
-  gap: 14px !important;
-}
-
-html body .simulations-page .simulation-grid::before {
-  content: "EXPERIMENTS / 03 SCENARIOS" !important;
-  grid-column: 1 / -1 !important;
-
-  display: block !important;
-  margin-bottom: 4px !important;
-
-  color: rgba(243,241,235,.38) !important;
-  font-family: var(--font-geist-mono), "IBM Plex Mono", monospace !important;
-  font-size: 10px !important;
-  letter-spacing: .16em !important;
-  text-transform: uppercase !important;
-}
-
-/* ---------- CARDS ---------- */
-
-html body .simulations-page .simulation-grid .simulation-card {
-  position: relative !important;
-  display: flex !important;
-  flex-direction: column !important;
-
-  min-width: 0 !important;
-  min-height: 460px !important;
-
-  padding: 28px !important;
-
-  background: #090b0a !important;
-  border: 1px solid rgba(243,241,235,.14) !important;
-  color: #f3f1eb !important;
-
-  text-decoration: none !important;
-  overflow: hidden !important;
-
-  transition:
-    background 220ms ease,
-    border-color 220ms ease,
-    transform 220ms ease !important;
-}
-
-html body .simulations-page .simulation-grid .simulation-card:hover {
-  background: #0d0f0e !important;
-  border-color: rgba(243,241,235,.30) !important;
-  transform: translateY(-3px) !important;
-}
-
-/* Card metadata */
-html body .simulations-page .simulation-card .simulation-card-code,
-html body .simulations-page .simulation-card .simulation-card-category {
-  color: rgba(243,241,235,.42) !important;
-  font-family: var(--font-geist-mono), "IBM Plex Mono", monospace !important;
-  font-size: 9px !important;
-  letter-spacing: .14em !important;
-  text-transform: uppercase !important;
-}
-
-/* Large card number */
-html body .simulations-page .simulation-card .simulation-card-index {
-  position: absolute !important;
-  top: 82px !important;
-  right: 24px !important;
-
-  color: rgba(243,241,235,.045) !important;
-  font-family: "Cormorant Garamond", Georgia, serif !important;
-  font-size: 105px !important;
-  font-weight: 500 !important;
-  line-height: .8 !important;
-  letter-spacing: -.05em !important;
-  pointer-events: none !important;
-}
-
-/* Card title */
-html body .simulations-page .simulation-card h2 {
-  position: relative !important;
-  z-index: 1 !important;
-
-  margin: auto 0 18px !important;
-
-  max-width: 430px !important;
-
-  color: #f3f1eb !important;
-  font-family: "Cormorant Garamond", Georgia, serif !important;
-  font-size: clamp(42px, 4vw, 62px) !important;
-  font-weight: 500 !important;
-  letter-spacing: -.045em !important;
-  line-height: .88 !important;
-}
-
-/* Card description */
-html body .simulations-page .simulation-card p {
-  position: relative !important;
-  z-index: 1 !important;
-
-  max-width: 430px !important;
-  margin: 0 0 28px !important;
-
-  color: rgba(243,241,235,.50) !important;
-  font-size: 12px !important;
-  line-height: 1.65 !important;
-}
-
-/* Card footer */
-html body .simulations-page .simulation-card .simulation-card-footer {
-  position: relative !important;
-  z-index: 1 !important;
 
   display: flex !important;
   align-items: center !important;
   justify-content: space-between !important;
 
+  border-radius: 0 !important;
+
+  background: transparent !important;
+
+  box-shadow: none !important;
+
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  overflow: visible !important;
+
+  z-index: 20 !important;
+}
+
+html body .live-page .live-topbar::before,
+html body .live-page .live-topbar::after,
+html body .simulations-page .live-topbar::before,
+html body .simulations-page .live-topbar::after,
+html body .simulation-page .live-topbar::before,
+html body .simulation-page .live-topbar::after {
+  display: none !important;
+  content: none !important;
+}
+
+html body .live-page .live-brand,
+html body .simulations-page .live-brand,
+html body .simulation-page .live-brand {
+  position: static !important;
+  transform: none !important;
+}
+
+html body .live-page .live-topbar-meta,
+html body .simulations-page .live-topbar-meta,
+html body .simulation-page .live-topbar-meta {
+  position: static !important;
+  transform: none !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 700px) {
+  html body .live-page .live-topbar,
+  html body .simulations-page .live-topbar,
+  html body .simulation-page .live-topbar {
+    height: 72px !important;
+  }
+}
+
+/* =========================================================
+   STELLA FEATURE PAGES — FINAL STRUCTURAL OVERRIDE
+   /live + /simulations
+   Do not touch inference/layout JS.
+   ========================================================= */
+
+/* ---------- FEATURE HEADER ---------- */
+
+html body .live-page .live-topbar,
+html body .simulations-page .live-topbar,
+html body .simulation-page .live-topbar {
+  position: relative !important;
+  inset: auto !important;
+
+  width: min(1500px, 100%) !important;
+  max-width: 1500px !important;
+  height: 76px !important;
+  min-height: 76px !important;
+
+  margin: 0 auto !important;
+  padding: 0 34px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,.10) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+
+  color: #f2f0ea !important;
+  transform: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  z-index: 100 !important;
+}
+
+html body .live-page .live-brand,
+html body .simulations-page .live-brand,
+html body .simulation-page .live-brand {
+  color: #f2f0ea !important;
+  opacity: 1 !important;
+}
+
+html body .live-page .live-brand-mark,
+html body .simulations-page .live-brand-mark,
+html body .simulation-page .live-brand-mark {
+  color: #f2f0ea !important;
+  border-color: rgba(255,255,255,.35) !important;
+}
+
+html body .live-page .live-topbar-meta,
+html body .simulations-page .live-topbar-meta,
+html body .simulation-page .live-topbar-meta {
+  color: rgba(242,240,234,.55) !important;
+  border-left-color: rgba(255,255,255,.12) !important;
+}
+
+html body .live-page .live-topbar-meta a,
+html body .simulations-page .live-topbar-meta a,
+html body .simulation-page .live-topbar-meta a {
+  color: inherit !important;
+}
+
+html body .live-page .topbar-divider,
+html body .simulations-page .topbar-divider,
+html body .simulation-page .topbar-divider {
+  background: rgba(255,255,255,.16) !important;
+}
+
+
+/* ---------- LIVE PAGE OUTER RHYTHM ---------- */
+
+html body .live-page {
   width: 100% !important;
-  padding-top: 20px !important;
-
-  border-top: 1px solid rgba(243,241,235,.14) !important;
+  min-height: 100vh !important;
+  overflow-x: hidden !important;
 }
 
-html body .simulations-page .simulation-card .simulation-card-footer span {
-  color: rgba(243,241,235,.38) !important;
-  font-family: var(--font-geist-mono), "IBM Plex Mono", monospace !important;
-  font-size: 9px !important;
-  letter-spacing: .14em !important;
+html body .live-page .live-shell {
+  width: min(1500px, calc(100% - 68px)) !important;
+  max-width: 1500px !important;
+  margin: 0 auto !important;
 }
 
-html body .simulations-page .simulation-card .simulation-card-footer strong {
-  color: rgba(243,241,235,.65) !important;
-  font-size: 20px !important;
-  font-weight: 400 !important;
+
+/* ---------- LIVE HERO ---------- */
+
+html body .live-page .live-hero {
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 110px 0 64px !important;
 }
 
-/* ---------- DETAIL PAGE ---------- */
+
+/* ---------- LIVE MAIN GRID ---------- */
+
+html body .live-page .live-grid,
+html body .live-page .live-main-grid,
+html body .live-page .live-workspace {
+  align-items: start !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+
+/* ---------- CAMERA COLUMN ---------- */
+
+html body .live-page .camera-stage {
+  min-height: 0 !important;
+  height: auto !important;
+  aspect-ratio: 16 / 9 !important;
+  max-height: none !important;
+}
+
+html body .live-page .camera-stage video,
+html body .live-page .camera-stage canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+html body .live-page .camera-stage {
+  margin-bottom: 0 !important;
+}
+
+
+/* Kill accidental viewport-sized wrappers around the camera. */
+html body .live-page .camera-column,
+html body .live-page .live-camera-column,
+html body .live-page .perception-column {
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+
+/* ---------- ANALYSIS SIDEBAR ---------- */
+
+html body .live-page .analysis-column,
+html body .live-page .live-analysis,
+html body .live-page .analysis-stack {
+  height: auto !important;
+  min-height: 0 !important;
+  align-self: start !important;
+}
+
+
+/* ---------- LIVE BELOW-CAMERA CONTENT ---------- */
+
+html body .live-page .live-stats,
+html body .live-page .live-metrics,
+html body .live-page .event-stream,
+html body .live-page .live-events {
+  margin-top: 28px !important;
+}
+
+
+/* ---------- SIMULATION ARCHIVE ---------- */
+
+html body .simulations-page {
+  width: 100% !important;
+  min-height: 100vh !important;
+  overflow-x: hidden !important;
+  padding: 0 !important;
+}
+
+html body .simulations-page .simulation-shell {
+  width: min(1500px, calc(100% - 68px)) !important;
+  max-width: 1500px !important;
+  margin: 0 auto !important;
+}
+
+html body .simulations-page .simulation-hero {
+  min-height: 0 !important;
+  padding: 105px 0 70px !important;
+}
+
+html body .simulations-page .simulation-grid {
+  width: 100% !important;
+  margin-top: 0 !important;
+}
+
+
+/* ---------- SIMULATION DETAIL ---------- */
 
 html body .simulation-page {
+  width: 100% !important;
   min-height: 100vh !important;
-  background: #050505 !important;
-  color: #f3f1eb !important;
+  overflow-x: hidden !important;
   padding: 0 !important;
 }
 
 html body .simulation-page .simulation-detail {
-  width: min(1420px, calc(100% - 72px)) !important;
+  width: min(1500px, calc(100% - 68px)) !important;
+  max-width: 1500px !important;
   margin: 0 auto !important;
-  padding: 170px 0 140px !important;
 }
 
 html body .simulation-page .simulation-detail-heading {
-  max-width: 1000px !important;
-  margin-bottom: 70px !important;
+  padding-top: 95px !important;
 }
 
-html body .simulation-page .back-link {
-  display: inline-block !important;
-  margin-bottom: 44px !important;
 
-  color: rgba(243,241,235,.42) !important;
-  font-family: var(--font-geist-mono), "IBM Plex Mono", monospace !important;
-  font-size: 10px !important;
-  letter-spacing: .14em !important;
-  text-decoration: none !important;
-}
+/* ---------- MOBILE ---------- */
 
-html body .simulation-page .back-link:hover {
-  color: #f3f1eb !important;
-}
-
-html body .simulation-page .simulation-detail-heading .live-eyebrow {
-  margin-bottom: 26px !important;
-  color: rgba(243,241,235,.42) !important;
-  font-family: var(--font-geist-mono), "IBM Plex Mono", monospace !important;
-  font-size: 10px !important;
-  letter-spacing: .16em !important;
-}
-
-html body .simulation-page .simulation-detail-heading h1 {
-  margin: 0 !important;
-
-  color: #f3f1eb !important;
-  font-family: "Cormorant Garamond", Georgia, serif !important;
-  font-size: clamp(70px, 8vw, 125px) !important;
-  font-weight: 500 !important;
-  letter-spacing: -.055em !important;
-  line-height: .82 !important;
-}
-
-html body .simulation-page .simulation-detail-heading p {
-  max-width: 760px !important;
-  margin: 38px 0 0 !important;
-
-  color: rgba(243,241,235,.58) !important;
-  font-size: 16px !important;
-  line-height: 1.75 !important;
-}
-
-html body .simulation-page .simulation-viewer {
-  width: 100% !important;
-}
-
-/* ---------- RESPONSIVE ---------- */
-
-@media (max-width: 1000px) {
-  html body .simulations-page .simulation-shell {
-    width: calc(100% - 40px) !important;
+@media (max-width: 700px) {
+  html body .live-page .live-topbar,
+  html body .simulations-page .live-topbar,
+  html body .simulation-page .live-topbar {
+    width: 100% !important;
+    height: 64px !important;
+    min-height: 64px !important;
+    padding: 0 18px !important;
   }
 
-  html body .simulations-page .simulation-hero {
-    grid-template-columns: 1fr !important;
-    min-height: auto !important;
-    gap: 45px !important;
-  }
-
-  html body .simulations-page .simulation-hero-meta {
-    text-align: left !important;
-  }
-
-  html body .simulations-page .simulation-grid {
-    grid-template-columns: 1fr !important;
-  }
-
+  html body .live-page .live-shell,
+  html body .simulations-page .simulation-shell,
   html body .simulation-page .simulation-detail {
-    width: calc(100% - 40px) !important;
-  }
-}
-
-@media (max-width: 600px) {
-  html body .simulations-page .simulation-shell {
-    width: calc(100% - 28px) !important;
-    padding-top: 130px !important;
+    width: calc(100% - 32px) !important;
   }
 
+  html body .live-page .live-hero,
   html body .simulations-page .simulation-hero {
-    padding: 45px 0 60px !important;
-  }
-
-  html body .simulations-page .simulation-hero h1 {
-    font-size: clamp(64px, 18vw, 100px) !important;
-  }
-
-  html body .simulations-page .simulation-notice {
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
-  }
-
-  html body .simulations-page .simulation-grid .simulation-card {
-    min-height: 420px !important;
-  }
-
-  html body .simulation-page .simulation-detail {
-    width: calc(100% - 28px) !important;
-    padding-top: 130px !important;
+    padding-top: 70px !important;
   }
 }
-
-
 /* =========================================================
-   SIMULATION LAB — ACTUAL PAGE TYPOGRAPHY
-   Targets the real JSX in app/simulations/page.tsx
+   STELLA FEATURE ROUTES — CLEAN FINAL LAYOUT
    ========================================================= */
 
-html body .simulations-page {
-  min-height: 100vh !important;
-  background: #050505 !important;
-  color: #f3f1eb !important;
-  overflow-x: hidden !important;
+/* ---------------------------------------------------------
+   GLOBAL FEATURE PAGE
+   --------------------------------------------------------- */
+
+html body {
+  margin: 0;
 }
 
-/* ---------- HERO ---------- */
+.live-route,
+.live-page,
+.simulations-page,
+.simulation-page {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-html body .simulations-page .simulations-hero {
-  width: min(1420px, calc(100% - 72px)) !important;
-  min-height: 620px !important;
+
+/* ---------------------------------------------------------
+   FEATURE HEADER
+   --------------------------------------------------------- */
+
+.live-page .live-topbar,
+.simulations-page .live-topbar,
+.simulation-page .live-topbar {
+  position: relative !important;
+  inset: auto !important;
+
+  width: min(1500px, calc(100% - 64px)) !important;
+  max-width: 1500px !important;
+
+  height: 76px !important;
+  min-height: 76px !important;
+
   margin: 0 auto !important;
-  padding: 190px 0 100px !important;
+  padding: 0 !important;
 
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) 260px !important;
-  align-items: end !important;
-  gap: 80px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
 
-  box-sizing: border-box !important;
+  background: transparent !important;
+
+  border: 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,.10) !important;
+  border-radius: 0 !important;
+
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  color: #f3f1eb !important;
+
+  transform: none !important;
+
+  z-index: 100 !important;
 }
 
-html body .simulations-page .simulations-hero-copy {
-  min-width: 0 !important;
-}
+.live-page .live-brand,
+.simulations-page .live-brand,
+.simulation-page .live-brand {
+  position: static !important;
 
-html body .simulations-page .feature-kicker {
-  margin: 0 0 32px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 10px !important;
 
-  color: rgba(243,241,235,.48) !important;
-  font-family: "IBM Plex Mono", monospace !important;
-  font-size: 10px !important;
-  font-weight: 400 !important;
-  line-height: 1.2 !important;
-  letter-spacing: .18em !important;
-  text-transform: uppercase !important;
-}
-
-html body .simulations-page .simulations-hero h1 {
-  margin: 0 !important;
+  height: auto !important;
   padding: 0 !important;
 
   color: #f3f1eb !important;
-  font-family: "Cormorant Garamond", Georgia, serif !important;
-  font-size: clamp(82px, 9.2vw, 148px) !important;
-  font-weight: 500 !important;
-  letter-spacing: -.065em !important;
-  line-height: .78 !important;
+
+  transform: none !important;
 }
 
-html body .simulations-page .simulations-hero h1 span {
+.live-page .live-brand-mark,
+.simulations-page .live-brand-mark,
+.simulation-page .live-brand-mark {
+  width: 27px !important;
+  height: 27px !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  border: 1px solid rgba(255,255,255,.30) !important;
+
+  color: #f3f1eb !important;
+
+  font-family: "DM Mono", monospace !important;
+  font-size: 10px !important;
+}
+
+.live-page .live-topbar-meta,
+.simulations-page .live-topbar-meta,
+.simulation-page .live-topbar-meta {
+  position: static !important;
+
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+
+  height: auto !important;
+  margin: 0 !important;
+  padding: 0 !important;
+
+  border: 0 !important;
+
+  color: rgba(243,241,235,.48) !important;
+
+  font-family: "DM Mono", monospace !important;
+  font-size: 8px !important;
+  letter-spacing: .13em !important;
+  text-transform: uppercase !important;
+
+  transform: none !important;
+}
+
+.live-page .live-topbar-meta a,
+.simulations-page .live-topbar-meta a,
+.simulation-page .live-topbar-meta a {
+  color: inherit !important;
+}
+
+.live-page .topbar-divider,
+.simulations-page .topbar-divider,
+.simulation-page .topbar-divider {
+  width: 1px !important;
+  height: 12px !important;
+
+  background: rgba(255,255,255,.14) !important;
+}
+
+.live-page .system-indicator,
+.simulations-page .system-indicator,
+.simulation-page .system-indicator {
+  width: 5px !important;
+  height: 5px !important;
+
+  border-radius: 50% !important;
+}
+
+
+/* ---------------------------------------------------------
+   LIVE PAGE
+   --------------------------------------------------------- */
+
+.live-page {
+  background: #050505 !important;
+  color: #f3f1eb !important;
+}
+
+.live-page .live-shell {
+  width: min(1500px, calc(100% - 64px)) !important;
+  max-width: 1500px !important;
+  margin: 0 auto !important;
+}
+
+.live-page .live-hero {
+  min-height: 0 !important;
+  height: auto !important;
+
+  padding: 105px 0 55px !important;
+}
+
+.live-page .live-grid,
+.live-page .live-main-grid,
+.live-page .live-workspace {
+  height: auto !important;
+  min-height: 0 !important;
+
+  align-items: start !important;
+}
+
+.live-page .camera-stage {
+  height: auto !important;
+  min-height: 0 !important;
+
+  aspect-ratio: 16 / 9 !important;
+
+  margin: 0 !important;
+}
+
+.live-page .camera-stage video,
+.live-page .camera-stage canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.live-page .camera-column,
+.live-page .live-camera-column,
+.live-page .perception-column,
+.live-page .analysis-column,
+.live-page .live-analysis,
+.live-page .analysis-stack {
+  height: auto !important;
+  min-height: 0 !important;
+
+  align-self: start !important;
+}
+
+.live-page .live-stats,
+.live-page .live-metrics,
+.live-page .event-stream,
+.live-page .live-events {
+  margin-top: 28px !important;
+}
+
+
+/* ---------------------------------------------------------
+   SIMULATION ARCHIVE
+   --------------------------------------------------------- */
+
+.simulations-page {
+  background: #070808 !important;
+  color: #f3f1eb !important;
+
+  padding: 0 !important;
+}
+
+.simulations-page .simulation-shell {
+  width: min(1500px, calc(100% - 64px)) !important;
+  max-width: 1500px !important;
+
+  margin: 0 auto !important;
+}
+
+.simulations-page .simulation-hero {
+  min-height: 0 !important;
+
+  padding: 100px 0 65px !important;
+
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 280px !important;
+  gap: 70px !important;
+
+  align-items: end !important;
+}
+
+.simulations-page .simulation-hero h1 {
+  margin: 18px 0 0 !important;
+
+  color: #f3f1eb !important;
+
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(68px, 8vw, 128px) !important;
+  font-weight: 500 !important;
+  line-height: .82 !important;
+  letter-spacing: -.055em !important;
+}
+
+.simulations-page .simulation-hero h1 span {
   color: rgba(243,241,235,.28) !important;
 }
 
-html body .simulations-page .simulations-hero-copy p {
-  max-width: 720px !important;
-  margin: 42px 0 0 !important;
+.simulations-page .simulation-hero p {
+  max-width: 760px !important;
 
-  color: rgba(243,241,235,.58) !important;
-  font-family: inherit !important;
+  margin: 35px 0 0 !important;
+
+  color: rgba(243,241,235,.52) !important;
+
   font-size: 15px !important;
-  font-weight: 400 !important;
-  line-height: 1.75 !important;
+  line-height: 1.7 !important;
 }
 
-/* ---------- HERO META ---------- */
-
-html body .simulations-page .simulations-hero-meta {
-  align-self: end !important;
-  padding-bottom: 5px !important;
-
+.simulations-page .simulation-hero-meta {
   display: flex !important;
   flex-direction: column !important;
-  align-items: flex-end !important;
+  gap: 7px !important;
 
-  text-align: right !important;
-}
+  padding-bottom: 7px !important;
 
-html body .simulations-page .simulations-hero-meta span,
-html body .simulations-page .simulations-hero-meta small {
-  font-family: "IBM Plex Mono", monospace !important;
-  font-size: 9px !important;
-  font-weight: 400 !important;
-  line-height: 1.4 !important;
-  letter-spacing: .16em !important;
+  color: rgba(243,241,235,.42) !important;
+
+  font-family: "DM Mono", monospace !important;
+  font-size: 8px !important;
+  letter-spacing: .12em !important;
   text-transform: uppercase !important;
 }
 
-html body .simulations-page .simulations-hero-meta span {
-  color: rgba(243,241,235,.42) !important;
-}
-
-html body .simulations-page .simulations-hero-meta strong {
-  margin: 12px 0 2px !important;
+.simulations-page .simulation-hero-meta strong {
+  margin: 6px 0 0 !important;
 
   color: rgba(243,241,235,.18) !important;
+
   font-family: "Cormorant Garamond", Georgia, serif !important;
-  font-size: 92px !important;
+  font-size: 80px !important;
   font-weight: 500 !important;
-  line-height: .72 !important;
-  letter-spacing: -.06em !important;
+  line-height: .75 !important;
 }
 
-html body .simulations-page .simulations-hero-meta small {
-  color: rgba(243,241,235,.32) !important;
-}
-
-/* ---------- NOTE ---------- */
-
-html body .simulations-page .simulation-note {
-  width: min(1420px, calc(100% - 72px)) !important;
-  margin: 0 auto !important;
-  padding: 24px 0 !important;
-
+.simulations-page .simulation-notice {
   display: grid !important;
   grid-template-columns: 220px minmax(0, 1fr) !important;
-  gap: 40px !important;
+  gap: 30px !important;
 
-  border-top: 1px solid rgba(243,241,235,.14) !important;
-  border-bottom: 1px solid rgba(243,241,235,.14) !important;
-  box-sizing: border-box !important;
+  margin-bottom: 35px !important;
+  padding: 18px 0 !important;
+
+  border-top: 1px solid rgba(255,255,255,.10) !important;
+  border-bottom: 1px solid rgba(255,255,255,.10) !important;
 }
 
-html body .simulations-page .simulation-note > span {
+.simulations-page .simulation-notice > span {
   color: rgba(243,241,235,.38) !important;
-  font-family: "IBM Plex Mono", monospace !important;
-  font-size: 9px !important;
-  font-weight: 400 !important;
-  letter-spacing: .16em !important;
-  text-transform: uppercase !important;
+
+  font-family: "DM Mono", monospace !important;
+  font-size: 8px !important;
+  letter-spacing: .13em !important;
 }
 
-html body .simulations-page .simulation-note p {
-  margin: 0 !important;
-  max-width: 820px !important;
+.simulations-page .simulation-notice p {
+  max-width: 800px !important;
 
-  color: rgba(243,241,235,.56) !important;
+  margin: 0 !important;
+
+  color: rgba(243,241,235,.50) !important;
+
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+.simulations-page .simulation-grid {
+  width: 100% !important;
+
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+
+  margin: 0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   SIMULATION DETAIL
+   --------------------------------------------------------- */
+
+.simulation-page {
+  background: #070808 !important;
+  color: #f3f1eb !important;
+
+  padding: 0 !important;
+}
+
+.simulation-page .simulation-detail {
+  width: min(1500px, calc(100% - 64px)) !important;
+  max-width: 1500px !important;
+
+  margin: 0 auto !important;
+}
+
+.simulation-page .simulation-detail-heading {
+  padding-top: 90px !important;
+}
+
+.simulation-page .simulation-detail-heading h1 {
+  max-width: 1150px !important;
+
+  margin: 20px 0 0 !important;
+
+  color: #f3f1eb !important;
+
+  font-family: "Cormorant Garamond", Georgia, serif !important;
+  font-size: clamp(64px, 7vw, 115px) !important;
+  font-weight: 500 !important;
+  line-height: .84 !important;
+  letter-spacing: -.055em !important;
+}
+
+.simulation-page .simulation-detail-heading p {
+  max-width: 680px !important;
+
+  margin: 30px 0 0 !important;
+
+  color: rgba(243,241,235,.50) !important;
+
   font-size: 14px !important;
   line-height: 1.7 !important;
 }
 
-/* ---------- ARCHIVE ---------- */
-
-html body .simulations-page .simulation-archive {
-  width: min(1420px, calc(100% - 72px)) !important;
-  margin: 0 auto !important;
-  padding: 78px 0 140px !important;
-}
-
-html body .simulations-page .archive-heading {
+.simulation-page .simulation-viewer {
   width: 100% !important;
-  margin: 0 0 20px !important;
 
-  display: flex !important;
-  justify-content: space-between !important;
-  align-items: center !important;
-
-  color: rgba(243,241,235,.38) !important;
-  font-family: "IBM Plex Mono", monospace !important;
-  font-size: 9px !important;
-  font-weight: 400 !important;
-  line-height: 1.2 !important;
-  letter-spacing: .16em !important;
-  text-transform: uppercase !important;
+  padding-top: 60px !important;
+  padding-bottom: 100px !important;
 }
 
-html body .simulations-page .simulation-grid {
-  display: grid !important;
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-  gap: 14px !important;
+
+/* ---------------------------------------------------------
+   REMOVE LEGACY FEATURE DECORATION
+   --------------------------------------------------------- */
+
+.live-page::before,
+.live-page::after,
+.simulations-page::before,
+.simulations-page::after,
+.simulation-page::before,
+.simulation-page::after {
+  display: none !important;
+  content: none !important;
 }
 
-/* ---------- CARDS ---------- */
-
-html body .simulations-page .simulation-card {
-  min-width: 0 !important;
-  min-height: 460px !important;
-  box-sizing: border-box !important;
-
-  background: #090b0a !important;
-  border: 1px solid rgba(243,241,235,.14) !important;
-  color: #f3f1eb !important;
-
-  text-decoration: none !important;
+.live-page .live-topbar::before,
+.live-page .live-topbar::after,
+.simulations-page .live-topbar::before,
+.simulations-page .live-topbar::after,
+.simulation-page .live-topbar::before,
+.simulation-page .live-topbar::after {
+  display: none !important;
+  content: none !important;
 }
 
-html body .simulations-page .simulation-card h2 {
-  color: #f3f1eb !important;
-  font-family: "Cormorant Garamond", Georgia, serif !important;
-  font-size: clamp(44px, 4vw, 62px) !important;
-  font-weight: 500 !important;
-  letter-spacing: -.05em !important;
-  line-height: .86 !important;
-}
 
-html body .simulations-page .simulation-card p {
-  color: rgba(243,241,235,.50) !important;
-  font-family: inherit !important;
-  font-size: 12px !important;
-  font-weight: 400 !important;
-  line-height: 1.65 !important;
-}
-
-html body .simulations-page .simulation-card small,
-html body .simulations-page .simulation-card span {
-  font-family: "IBM Plex Mono", monospace !important;
-}
-
-/* ---------- DESKTOP WIDTH ---------- */
-
-@media (min-width: 1200px) {
-  html body .simulations-page .simulations-hero h1 {
-    font-size: clamp(90px, 9vw, 150px) !important;
-  }
-}
-
-/* ---------- TABLET ---------- */
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
 
 @media (max-width: 900px) {
-  html body .simulations-page .simulations-hero {
-    width: calc(100% - 40px) !important;
-    min-height: auto !important;
-    padding: 150px 0 80px !important;
-
+  .simulations-page .simulation-hero {
     grid-template-columns: 1fr !important;
-    gap: 55px !important;
+    gap: 40px !important;
   }
 
-  html body .simulations-page .simulations-hero-meta {
-    align-items: flex-start !important;
-    text-align: left !important;
-  }
-
-  html body .simulations-page .simulation-note,
-  html body .simulations-page .simulation-archive {
-    width: calc(100% - 40px) !important;
-  }
-
-  html body .simulations-page .simulation-note {
-    grid-template-columns: 1fr !important;
-    gap: 14px !important;
-  }
-
-  html body .simulations-page .simulation-grid {
-    grid-template-columns: 1fr !important;
+  .simulations-page .simulation-grid {
+    grid-template-columns: 1fr 1fr !important;
   }
 }
 
-/* ---------- MOBILE ---------- */
+@media (max-width: 700px) {
+  .live-page .live-topbar,
+  .simulations-page .live-topbar,
+  .simulation-page .live-topbar {
+    width: 100% !important;
 
-@media (max-width: 600px) {
-  html body .simulations-page .simulations-hero,
-  html body .simulations-page .simulation-note,
-  html body .simulations-page .simulation-archive {
-    width: calc(100% - 28px) !important;
+    height: 64px !important;
+    min-height: 64px !important;
+
+    padding: 0 18px !important;
   }
 
-  html body .simulations-page .simulations-hero {
-    padding-top: 130px !important;
-    padding-bottom: 65px !important;
+  .live-page .live-shell,
+  .simulations-page .simulation-shell,
+  .simulation-page .simulation-detail {
+    width: calc(100% - 32px) !important;
   }
 
-  html body .simulations-page .simulations-hero h1 {
-    font-size: clamp(64px, 18vw, 100px) !important;
+  .live-page .live-hero,
+  .simulations-page .simulation-hero {
+    padding: 70px 0 50px !important;
   }
 
-  html body .simulations-page .simulation-archive {
+  .simulations-page .simulation-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .simulations-page .simulation-notice {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+  }
+
+  .simulations-page .simulation-hero h1 {
+    font-size: clamp(58px, 17vw, 90px) !important;
+  }
+
+  .simulation-page .simulation-detail-heading {
     padding-top: 60px !important;
   }
+
+  .simulation-page .simulation-detail-heading h1 {
+    font-size: clamp(54px, 15vw, 82px) !important;
+  }
 }
+/* =========================================================
+   STELLA LIVE — FINAL SPACING FIX
+   Fix sidebar-driven dead space.
+   ========================================================= */
+
+.live-page {
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+
+
+/* ---------------------------------------------------------
+   HEADER
+   --------------------------------------------------------- */
+
+.live-page .live-topbar {
+  position: sticky !important;
+  top: 0 !important;
+  left: auto !important;
+  right: auto !important;
+
+  width: min(1500px, calc(100% - 64px)) !important;
+  max-width: 1500px !important;
+
+  height: 72px !important;
+  min-height: 72px !important;
+
+  margin: 0 auto !important;
+  padding: 0 !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+
+  background: rgba(8,9,9,.94) !important;
+
+  border: 0 !important;
+  border-bottom: 1px solid rgba(244,244,241,.12) !important;
+  border-radius: 0 !important;
+
+  box-shadow: none !important;
+
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+
+  transform: none !important;
+
+  z-index: 500 !important;
+}
+
+
+/* ---------------------------------------------------------
+   LIVE CONTENT
+   --------------------------------------------------------- */
+
+.live-page .live-shell {
+  width: min(1500px, calc(100% - 64px)) !important;
+  max-width: 1500px !important;
+
+  margin: 0 auto !important;
+
+  padding: 90px 0 90px !important;
+}
+
+
+/* ---------------------------------------------------------
+   THE IMPORTANT FIX
+   ---------------------------------------------------------
+
+   The old CSS makes the workspace a grid row.
+
+   Camera = ~16:9
+   Sidebar = ~700px tall
+
+   Therefore:
+   grid row = ~700px
+
+   Camera ends halfway down
+   perception gets pushed hundreds of px downward.
+
+   Make the workspace a positioned container instead.
+   --------------------------------------------------------- */
+
+.live-page .live-workspace {
+  position: relative !important;
+
+  display: block !important;
+
+  width: 100% !important;
+
+  height: auto !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+}
+
+
+/* Camera owns the height of the workspace. */
+
+.live-page .camera-panel {
+  width: calc(100% - 388px) !important;
+
+  height: auto !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+}
+
+
+/* Camera remains true 16:9. */
+
+.live-page .camera-stage {
+  width: 100% !important;
+
+  height: auto !important;
+  min-height: 0 !important;
+
+  aspect-ratio: 16 / 9 !important;
+
+  max-height: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   SIDEBAR
+   ---------------------------------------------------------
+
+   It no longer determines the height of the workspace.
+   --------------------------------------------------------- */
+
+.live-page .analysis-column {
+  position: absolute !important;
+
+  top: 0 !important;
+  right: 0 !important;
+
+  width: 370px !important;
+  max-width: 370px !important;
+
+  height: auto !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+
+  gap: 12px !important;
+
+  align-self: start !important;
+}
+
+
+/* Keep cards compact. */
+
+.live-page .analysis-card,
+.live-page .sequence-card,
+.live-page .guidance-card {
+  height: auto !important;
+  min-height: 0 !important;
+
+  margin: 0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   PERCEPTION STRIP
+   ---------------------------------------------------------
+
+   Now it follows the actual camera height instead of
+   the sidebar height.
+   --------------------------------------------------------- */
+
+.live-page .perception-strip {
+  position: relative !important;
+
+  width: 100% !important;
+
+  margin-top: 16px !important;
+}
+
+
+/* Event console follows immediately after metrics. */
+
+.live-page .event-console {
+  width: 100% !important;
+
+  margin-top: 14px !important;
+}
+
+
+/* ---------------------------------------------------------
+   REMOVE OLD LARGE VERTICAL OFFSETS
+   --------------------------------------------------------- */
+
+.live-page .live-hero {
+  min-height: 0 !important;
+  height: auto !important;
+
+  padding: 70px 0 42px !important;
+
+  margin: 0 !important;
+}
+
+.live-page .runtime-card {
+  margin-bottom: 28px !important;
+}
+
+
+/* ---------------------------------------------------------
+   DESKTOP
+   --------------------------------------------------------- */
+
+@media (min-width: 1200px) {
+  .live-page .camera-panel {
+    width: calc(100% - 388px) !important;
+  }
+
+  .live-page .analysis-column {
+    width: 370px !important;
+    max-width: 370px !important;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width: 1100px) {
+  .live-page .live-shell {
+    width: calc(100% - 40px) !important;
+  }
+
+  .live-page .live-topbar {
+    width: calc(100% - 40px) !important;
+  }
+
+  .live-page .live-workspace {
+    display: block !important;
+  }
+
+  .live-page .camera-panel {
+    width: calc(100% - 338px) !important;
+  }
+
+  .live-page .analysis-column {
+    width: 320px !important;
+    max-width: 320px !important;
+  }
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 800px) {
+  .live-page .live-topbar {
+    position: sticky !important;
+
+    width: 100% !important;
+
+    height: 64px !important;
+    min-height: 64px !important;
+
+    padding: 0 18px !important;
+  }
+
+  .live-page .live-shell {
+    width: calc(100% - 28px) !important;
+
+    padding: 55px 0 70px !important;
+  }
+
+  .live-page .live-workspace {
+    display: block !important;
+  }
+
+  .live-page .camera-panel {
+    width: 100% !important;
+  }
+
+  .live-page .analysis-column {
+    position: static !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    margin-top: 14px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .live-page .perception-strip {
+    margin-top: 14px !important;
+  }
+}
+/* =========================================================
+   FEATURE PAGES — HERO NAV + READABLE SYSTEM
+   ========================================================= */
+
+.live-route .live-page .live-topbar {
+  display: none !important;
+}
+
+.live-route {
+  min-height: 100vh;
+  background: #050505;
+  color: #f3f1eb;
+}
+
+/* Keep the actual LiveAI interface below the floating hero nav */
+.live-route .live-page {
+  padding-top: 88px !important;
+}
+
+/* Readable body copy */
+.live-route .live-page p,
+.live-route .live-page small {
+  color: rgba(243, 241, 235, 0.62);
+}
+
+/* Increase the information hierarchy without touching functionality */
+.live-route .live-page .live-eyebrow,
+.live-route .live-page .eyebrow {
+  color: rgba(243, 241, 235, 0.58);
+  letter-spacing: 0.16em;
+}
+
+/* Panels */
+.live-route .live-page .panel,
+.live-route .live-page .live-panel,
+.live-route .live-page .mission-panel {
+  border-color: rgba(243, 241, 235, 0.14);
+}
+
+/* Don't let the interface become visually crushed */
+.live-route .live-page {
+  font-size: 14px;
+}
+
+.live-route .live-page h1,
+.live-route .live-page h2,
+.live-route .live-page h3 {
+  color: #f3f1eb;
+}
+
+@media (max-width: 900px) {
+  .live-route .live-page {
+    padding-top: 72px !important;
+  }
+}
+/* =========================================================
+   STELLA FEATURE PAGES
+   Shared visual language with the landing page
+   ========================================================= */
+
+.simulations-page,
+.simulation-page {
+  min-height: 100vh;
+  background: #050505;
+  color: #f3f1eb;
+  padding-top: 96px;
+}
+
+/* ---------- Shared typography ---------- */
+
+.feature-kicker {
+  margin-bottom: 28px;
+  color: rgba(243, 241, 235, 0.56);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.simulations-hero {
+  width: min(1420px, calc(100% - 72px));
+  min-height: 570px;
+  margin: 0 auto;
+  padding: 100px 0 90px;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  align-items: end;
+  gap: 80px;
+}
+
+.simulations-hero-copy {
+  max-width: 900px;
+}
+
+.simulations-hero h1 {
+  margin: 0;
+  color: #f3f1eb;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(72px, 8.4vw, 142px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.82;
+}
+
+.simulations-hero h1 span {
+  color: rgba(243, 241, 235, 0.28);
+}
+
+.simulations-hero-copy > p {
+  max-width: 720px;
+  margin: 52px 0 0;
+  color: rgba(243, 241, 235, 0.62);
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 17px;
+  line-height: 1.75;
+}
+
+.simulations-hero-meta {
+  padding-bottom: 12px;
+  text-align: right;
+}
+
+.simulations-hero-meta span,
+.simulations-hero-meta small {
+  display: block;
+  color: rgba(243, 241, 235, 0.4);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+}
+
+.simulations-hero-meta strong {
+  display: block;
+  margin: 8px 0 2px;
+  color: rgba(243, 241, 235, 0.2);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 92px;
+  font-weight: 500;
+  line-height: 0.8;
+}
+
+/* ---------- Archive note ---------- */
+
+.simulation-note {
+  width: min(1420px, calc(100% - 72px));
+  margin: 0 auto;
+  padding: 25px 0;
+  border-top: 1px solid rgba(243, 241, 235, 0.14);
+  border-bottom: 1px solid rgba(243, 241, 235, 0.14);
+
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+}
+
+.simulation-note > span {
+  color: rgba(243, 241, 235, 0.42);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.simulation-note p {
+  max-width: 850px;
+  margin: 0;
+  color: rgba(243, 241, 235, 0.62);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* ---------- Cards ---------- */
+
+.simulation-archive {
+  width: min(1420px, calc(100% - 72px));
+  margin: 0 auto;
+  padding: 82px 0 140px;
+}
+
+.archive-heading {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  color: rgba(243, 241, 235, 0.42);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+}
+
+.simulation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.simulation-grid .simulation-card {
+  min-height: 430px;
+  background: #0a0c0b;
+  border: 1px solid rgba(243, 241, 235, 0.14);
+  transition:
+    border-color 240ms ease,
+    background 240ms ease,
+    transform 240ms ease;
+}
+
+.simulation-grid .simulation-card:hover {
+  background: #0e100f;
+  border-color: rgba(243, 241, 235, 0.3);
+  transform: translateY(-3px);
+}
+
+/* ---------- Detail ---------- */
+
+.simulation-detail {
+  width: min(1420px, calc(100% - 72px));
+  margin: 0 auto;
+  padding: 85px 0 140px;
+}
+
+.simulation-detail-heading {
+  max-width: 1000px;
+  margin-bottom: 70px;
+}
+
+.simulation-back {
+  display: inline-block;
+  margin-bottom: 48px;
+  color: rgba(243, 241, 235, 0.5);
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+
+.simulation-back:hover {
+  color: #f3f1eb;
+}
+
+.simulation-detail-heading h1 {
+  margin: 0;
+  color: #f3f1eb;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(58px, 7vw, 112px);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.9;
+}
+
+.simulation-detail-heading p {
+  max-width: 760px;
+  margin: 38px 0 0;
+  color: rgba(243, 241, 235, 0.62);
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.simulation-viewer {
+  width: 100%;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 900px) {
+  .simulations-page,
+  .simulation-page {
+    padding-top: 76px;
+  }
+
+  .simulations-hero,
+  .simulation-note,
+  .simulation-archive,
+  .simulation-detail {
+    width: min(100% - 36px, 680px);
+  }
+
+  .simulations-hero {
+    min-height: auto;
+    padding: 80px 0 70px;
+    grid-template-columns: 1fr;
+    gap: 50px;
+  }
+
+  .simulations-hero h1 {
+    font-size: clamp(64px, 15vw, 100px);
+  }
+
+  .simulations-hero-meta {
+    text-align: left;
+  }
+
+  .simulation-note {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .simulation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .simulation-detail-heading h1 {
+    font-size: clamp(56px, 14vw, 90px);
+  }
+}
+
+@media (max-width: 600px) {
+  .simulations-hero,
+  .simulation-note,
+  .simulation-archive,
+  .simulation-detail {
+    width: calc(100% - 28px);
+  }
+
+  .simulations-hero-copy > p {
+    font-size: 15px;
+  }
+}
+
 

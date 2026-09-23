@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-
+import Navbar from "@/components/site/Navbar";
 import SimulationViewer from "@/components/simulations/SimulationViewer";
 import { getSimulation } from "@/lib/simulations";
 
@@ -20,33 +20,15 @@ export default async function SimulationPage({ params }: Props) {
 
   return (
     <main className="simulation-page">
-      <header className="live-topbar">
-        <Link href="/" className="live-brand">
-          <span className="live-brand-mark">S</span>
-          <span>STELLA</span>
-        </Link>
-
-        <div className="live-topbar-meta">
-          <Link href="/simulations">
-            SIMULATION LAB
-          </Link>
-
-          <span className="topbar-divider" />
-
-          <span>{simulation.code}</span>
-        </div>
-      </header>
+      <Navbar />
 
       <section className="simulation-detail">
         <div className="simulation-detail-heading">
-          <Link
-            href="/simulations"
-            className="back-link"
-          >
+          <Link href="/simulations" className="simulation-back">
             ← ALL EXPERIMENTS
           </Link>
 
-          <div className="live-eyebrow">
+          <div className="feature-kicker">
             {simulation.code} / TEMPORAL ANALYSIS
           </div>
 

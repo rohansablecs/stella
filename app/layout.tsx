@@ -31,8 +31,22 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable}`}
     >
+      <head>
+        <link
+          rel="icon"
+          type="image/png"
+          href="/favicon.png"
+        />
+        <link
+          rel="apple-touch-icon"
+          href="/favicon.png"
+        />
+      </head>
+
       <body>
-        <SmoothScroll />{children}</body>
+        <SmoothScroll />
+        {children}
+      </body>
     </html>
   );
 }
