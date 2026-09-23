@@ -567,7 +567,7 @@ export default function SimulationViewer({
                 left: 18,
                 padding: "10px 13px",
                 background:
-                  "rgba(8,9,9,.90)",
+                  "rgba(5,8,6,.88)",
                 color: "#f4f4f1",
                 fontFamily:
                   "IBM Plex Mono, monospace",
@@ -837,7 +837,7 @@ function ReplayHUD({
           left: 18,
           padding: "10px 13px",
           background:
-            "rgba(8,9,9,.90)",
+            "rgba(5,8,6,.86)",
           border:
             "1px solid rgba(244,244,241,.65)",
         }}
@@ -871,7 +871,7 @@ function ReplayHUD({
           width: 230,
           padding: 14,
           background:
-            "rgba(8,9,9,.92)",
+            "rgba(5,8,6,.9)",
           border:
             "1px solid rgba(255,255,255,.2)",
         }}
@@ -1070,7 +1070,7 @@ function ReplayHUD({
           bottom: 55,
           padding: "9px 12px",
           background:
-            "rgba(8,9,9,.92)",
+            "rgba(5,8,6,.9)",
           border:
             "1px solid rgba(244,244,241,.5)",
           color: "#f4f4f1",
@@ -1090,7 +1090,7 @@ function ReplayHUD({
           top: 88,
           padding: "5px 8px",
           background:
-            "rgba(8,9,9,.86)",
+            "rgba(5,8,6,.8)",
           color: "#f4f4f1",
           fontSize: 10,
         }}

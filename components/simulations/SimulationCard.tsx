@@ -1,15 +1,14 @@
 import Link from "next/link";
-
-import type {
-  Simulation,
-} from "@/lib/simulations";
+import type { Simulation } from "@/lib/simulations";
 
 type Props = {
   simulation: Simulation;
+  index?: number;
 };
 
 export default function SimulationCard({
   simulation,
+  index = 0,
 }: Props) {
   return (
     <Link
@@ -17,35 +16,21 @@ export default function SimulationCard({
       className="simulation-card"
     >
       <div className="simulation-card-top">
-        <span>
-          {simulation.code}
-        </span>
-
-        <span>
-          {simulation.category}
-        </span>
+        <span>{simulation.code}</span>
+        <span>{simulation.category}</span>
       </div>
 
       <div className="simulation-card-index">
-        00
+        {String(index + 1).padStart(2, "0")}
       </div>
 
-      <h2>
-        {simulation.title}
-      </h2>
+      <h2>{simulation.title}</h2>
 
-      <p>
-        {simulation.description}
-      </p>
+      <p>{simulation.description}</p>
 
       <div className="simulation-card-footer">
-        <span>
-          OPEN ANALYSIS
-        </span>
-
-        <span>
-          →
-        </span>
+        <span>OPEN ANALYSIS</span>
+        <span>↗</span>
       </div>
     </Link>
   );

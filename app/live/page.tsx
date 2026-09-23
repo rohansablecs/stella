@@ -2,7 +2,7 @@ import LiveAI from "@/components/live/LiveAI";
 
 export default function LivePage() {
   return (
-    <main>
+    <main className="live-route">
       <LiveAI />
     </main>
   );

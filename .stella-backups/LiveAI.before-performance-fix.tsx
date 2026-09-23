@@ -141,21 +141,6 @@ export default function LiveAI() {
   const lastInferenceRef =
     useRef(0);
 
-  /*
-   * Cache the latest perception result.
-   * Inference can run at ~10–20 FPS while the
-   * overlay itself renders at the browser's frame rate.
-   */
-  const latestPerceptionRef =
-    useRef<{
-      pose: any;
-      hands: any;
-      objects: any;
-      interaction: any;
-      width: number;
-      height: number;
-    } | null>(null);
-
   const fpsFramesRef =
     useRef(0);
 
@@ -523,23 +508,37 @@ export default function LiveAI() {
 
         /*
          * -----------------------------
-         * CACHE PERCEPTION
+         * DRAW PERCEPTION
          * -----------------------------
-         *
-         * MediaPipe inference is expensive.
-         * Keep its newest result and render that
-         * result continuously below the inference
-         * path.
          */
 
-        latestPerceptionRef.current = {
-          pose,
-          hands,
-          objects: trackedObjects,
-          interaction: interactionState,
+        drawObjects(
+          ctx,
+          trackedObjects,
           width,
           height,
-        };
+        );
+
+        drawPose(
+          ctx,
+          pose,
+          width,
+          height,
+        );
+
+        drawHands(
+          ctx,
+          hands,
+          width,
+          height,
+        );
+
+        drawInteraction(
+          ctx,
+          interactionState,
+          width,
+          height,
+        );
 
         /*
          * -----------------------------
@@ -660,56 +659,6 @@ export default function LiveAI() {
           fpsStartRef.current =
             time;
         }
-        /*
-         * -----------------------------
-         * CONTINUOUS RENDER
-         * -----------------------------
-         *
-         * Inference is deliberately slower than
-         * the browser render loop. Draw the newest
-         * cached perception result every frame.
-         */
-
-        const latest =
-          latestPerceptionRef.current;
-
-        if (latest) {
-          ctx.clearRect(
-            0,
-            0,
-            latest.width,
-            latest.height,
-          );
-
-          drawObjects(
-            ctx,
-            latest.objects,
-            latest.width,
-            latest.height,
-          );
-
-          drawPose(
-            ctx,
-            latest.pose,
-            latest.width,
-            latest.height,
-          );
-
-          drawHands(
-            ctx,
-            latest.hands,
-            latest.width,
-            latest.height,
-          );
-
-          drawInteraction(
-            ctx,
-            latest.interaction,
-            latest.width,
-            latest.height,
-          );
-        }
-
       } catch (frameError) {
         console.error(
           "STELLA frame error:",
@@ -836,8 +785,6 @@ export default function LiveAI() {
       }
 
       setRunning(false);
-
-      latestPerceptionRef.current = null;
 
       validatorRef.current.reset();
 
