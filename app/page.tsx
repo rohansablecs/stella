@@ -9,7 +9,7 @@ const resources = [
     number: "01",
     title: "GitHub",
     description: "Source code & implementation",
-    href: "#",
+    href: "https://github.com/rohansablecs/stella",
   },
   {
     number: "02",
@@ -27,7 +27,7 @@ const resources = [
     number: "04",
     title: "Dataset",
     description: "Training & evaluation data",
-    href: "#",
+    href: "https://drive.google.com/drive/folders/1qD_WxFhnynCEWoblB4cQTHRVej8CMf95",
   },
   {
     number: "05",
