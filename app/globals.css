@@ -15125,3 +15125,852 @@ html body .live-page .sequence-card {
     grid-row: auto !important;
   }
 }
+
+/* =========================================================
+   STELLA — INTERACTIVE TECHNOLOGY ROWS
+   ========================================================= */
+
+.capability-grid {
+  width: 100%;
+}
+
+
+/* ---------------------------------------------------------
+   ROW
+   --------------------------------------------------------- */
+
+.capability-row {
+  position: relative;
+
+  border-bottom: 1px solid rgba(243, 243, 239, 0.18);
+
+  transition:
+    background-color 300ms ease,
+    border-color 300ms ease;
+}
+
+.capability-row:first-child {
+  border-top: 1px solid rgba(243, 243, 239, 0.18);
+}
+
+.capability-row.is-open {
+  background: rgba(243, 243, 239, 0.025);
+}
+
+
+/* ---------------------------------------------------------
+   CLICK TARGET
+   --------------------------------------------------------- */
+
+.capability-trigger {
+  appearance: none;
+  -webkit-appearance: none;
+
+  display: grid;
+  grid-template-columns: 72px minmax(0, 1fr) 40px;
+  align-items: center;
+
+  width: 100%;
+
+  padding: 30px 0;
+
+  margin: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: inherit;
+
+  text-align: left;
+
+  cursor: pointer;
+}
+
+
+/* Number */
+
+.capability-number {
+  color: #4c83ff;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+}
+
+
+/* Main content */
+
+.capability-main {
+  min-width: 0;
+}
+
+.capability-main h3 {
+  margin: 0 0 8px;
+
+  color: #f2f2ee;
+
+  font-family: "Inter", sans-serif;
+  font-size: clamp(20px, 1.55vw, 27px);
+  font-weight: 600;
+  line-height: 1.05;
+}
+
+.capability-main p {
+  margin: 0;
+
+  color: rgba(243, 243, 239, 0.52);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 11px;
+  line-height: 1.5;
+}
+
+
+/* Plus / minus */
+
+.capability-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  color: #4c83ff;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 18px;
+  font-weight: 400;
+
+  transition:
+    transform 250ms ease,
+    color 250ms ease;
+}
+
+.capability-row.is-open .capability-mark {
+  color: #f3f3ef;
+}
+
+
+/* ---------------------------------------------------------
+   EXPANDED CONTENT
+   --------------------------------------------------------- */
+
+.capability-detail {
+  display: grid;
+  grid-template-rows: 0fr;
+
+  transition: grid-template-rows 420ms cubic-bezier(.2,.7,.2,1);
+}
+
+.capability-detail-inner {
+  min-height: 0;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(220px, .85fr);
+  gap: 70px;
+
+  padding: 0 72px 0 72px;
+
+  opacity: 0;
+
+  transform: translateY(-8px);
+
+  transition:
+    opacity 300ms ease,
+    transform 400ms ease,
+    padding 420ms cubic-bezier(.2,.7,.2,1);
+}
+
+.capability-row.is-open .capability-detail {
+  grid-template-rows: 1fr;
+}
+
+.capability-row.is-open .capability-detail-inner {
+  padding-top: 4px;
+  padding-bottom: 36px;
+
+  opacity: 1;
+
+  transform: translateY(0);
+}
+
+
+/* ---------------------------------------------------------
+   DETAIL COPY
+   --------------------------------------------------------- */
+
+.capability-detail-label {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: rgba(243, 243, 239, 0.36);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+}
+
+.capability-detail-copy p {
+  max-width: 620px;
+
+  margin: 0;
+
+  color: rgba(243, 243, 239, 0.68);
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+
+/* ---------------------------------------------------------
+   USES LIST
+   --------------------------------------------------------- */
+
+.capability-detail-uses ul {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+}
+
+.capability-detail-uses li {
+  position: relative;
+
+  padding: 7px 0 7px 17px;
+
+  border-bottom: 1px solid rgba(243, 243, 239, 0.07);
+
+  color: rgba(243, 243, 239, 0.62);
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  line-height: 1.45;
+}
+
+.capability-detail-uses li::before {
+  content: "—";
+
+  position: absolute;
+  left: 0;
+
+  color: rgba(243, 243, 239, 0.28);
+}
+
+
+/* ---------------------------------------------------------
+   OUTPUT
+   --------------------------------------------------------- */
+
+.capability-detail-output {
+  grid-column: 1 / -1;
+
+  padding-top: 4px;
+}
+
+.capability-detail-output strong {
+  display: block;
+
+  color: #f3f3ef;
+
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 10px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+}
+
+
+/* ---------------------------------------------------------
+   HOVER
+   --------------------------------------------------------- */
+
+.capability-trigger:hover .capability-main h3 {
+  color: #ffffff;
+}
+
+.capability-trigger:hover .capability-main p {
+  color: rgba(243, 243, 239, 0.68);
+}
+
+.capability-trigger:hover .capability-mark {
+  color: #ffffff;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+  .capability-trigger {
+    grid-template-columns: 42px minmax(0, 1fr) 30px;
+
+    padding: 24px 0;
+  }
+
+  .capability-main h3 {
+    font-size: 20px;
+  }
+
+  .capability-main p {
+    font-size: 9px;
+  }
+
+  .capability-detail-inner {
+    grid-template-columns: 1fr;
+
+    gap: 28px;
+
+    padding-left: 42px;
+    padding-right: 20px;
+  }
+
+  .capability-detail-output {
+    grid-column: auto;
+  }
+}
+
+
+/* =========================================================
+   STELLA TECHNOLOGY — FIX EXPANDABLE CAPABILITY ROWS
+   Override legacy .capability-row grid layout.
+   ========================================================= */
+
+.capability-grid {
+  display: block !important;
+  width: 100% !important;
+}
+
+.capability-row {
+  display: block !important;
+
+  width: 100% !important;
+
+  min-height: 0 !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  grid-template-columns: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   CLICKABLE HEADER
+   --------------------------------------------------------- */
+
+.capability-row .capability-trigger {
+  display: grid !important;
+
+  grid-template-columns:
+    72px
+    minmax(0, 1fr)
+    40px !important;
+
+  align-items: center !important;
+
+  width: 100% !important;
+
+  min-height: 110px !important;
+
+  padding: 30px 0 !important;
+  margin: 0 !important;
+
+  border: 0 !important;
+
+  background: transparent !important;
+
+  text-align: left !important;
+
+  box-sizing: border-box !important;
+}
+
+
+/* Number */
+
+.capability-row .capability-number {
+  display: block !important;
+
+  width: auto !important;
+
+  color: #4c83ff !important;
+
+  font-family: "IBM Plex Mono", monospace !important;
+  font-size: 10px !important;
+
+  line-height: 1 !important;
+}
+
+
+/* Title + description */
+
+.capability-row .capability-main {
+  display: block !important;
+
+  min-width: 0 !important;
+
+  width: 100% !important;
+}
+
+.capability-row .capability-main h3 {
+  display: block !important;
+
+  width: auto !important;
+
+  margin: 0 0 8px !important;
+
+  color: #f2f2ee !important;
+
+  font-family: "Inter", sans-serif !important;
+
+  font-size: clamp(20px, 1.55vw, 27px) !important;
+
+  font-weight: 600 !important;
+
+  line-height: 1.1 !important;
+
+  white-space: normal !important;
+}
+
+.capability-row .capability-main p {
+  display: block !important;
+
+  width: auto !important;
+
+  margin: 0 !important;
+
+  color: rgba(243,243,239,.52) !important;
+
+  font-family: "IBM Plex Mono", monospace !important;
+
+  font-size: 11px !important;
+
+  line-height: 1.5 !important;
+
+  white-space: normal !important;
+}
+
+
+/* Plus / minus */
+
+.capability-row .capability-mark {
+  display: flex !important;
+
+  align-items: center !important;
+  justify-content: center !important;
+
+  width: 32px !important;
+  height: 32px !important;
+
+  color: #4c83ff !important;
+
+  font-size: 18px !important;
+
+  flex: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   EXPANDED PANEL
+   --------------------------------------------------------- */
+
+.capability-row .capability-detail {
+  display: grid !important;
+
+  width: 100% !important;
+
+  grid-template-rows: 0fr;
+
+  overflow: hidden !important;
+
+  transition:
+    grid-template-rows 420ms cubic-bezier(.2,.7,.2,1) !important;
+}
+
+.capability-row .capability-detail-inner {
+  display: grid !important;
+
+  grid-template-columns:
+    minmax(0, 1.1fr)
+    minmax(260px, .9fr) !important;
+
+  gap: 70px !important;
+
+  width: 100% !important;
+
+  min-height: 0 !important;
+
+  box-sizing: border-box !important;
+
+  padding: 0 72px !important;
+
+  overflow: hidden !important;
+
+  opacity: 0 !important;
+
+  transform: translateY(-8px) !important;
+
+  transition:
+    opacity 300ms ease,
+    transform 400ms ease,
+    padding 420ms cubic-bezier(.2,.7,.2,1) !important;
+}
+
+.capability-row.is-open .capability-detail {
+  grid-template-rows: 1fr !important;
+}
+
+.capability-row.is-open .capability-detail-inner {
+  padding-top: 4px !important;
+  padding-bottom: 38px !important;
+
+  opacity: 1 !important;
+
+  transform: translateY(0) !important;
+}
+
+
+/* ---------------------------------------------------------
+   DETAIL TYPOGRAPHY
+   --------------------------------------------------------- */
+
+.capability-row .capability-detail-label {
+  display: block !important;
+
+  margin-bottom: 12px !important;
+
+  color: rgba(243,243,239,.36) !important;
+
+  font-family: "IBM Plex Mono", monospace !important;
+
+  font-size: 9px !important;
+
+  letter-spacing: .14em !important;
+}
+
+.capability-row .capability-detail-copy p {
+  max-width: 620px !important;
+
+  margin: 0 !important;
+
+  color: rgba(243,243,239,.68) !important;
+
+  font-family: "Inter", sans-serif !important;
+
+  font-size: 14px !important;
+
+  line-height: 1.7 !important;
+}
+
+.capability-row .capability-detail-uses ul {
+  margin: 0 !important;
+  padding: 0 !important;
+
+  list-style: none !important;
+}
+
+.capability-row .capability-detail-uses li {
+  position: relative !important;
+
+  padding: 7px 0 7px 17px !important;
+
+  border-bottom: 1px solid rgba(243,243,239,.07) !important;
+
+  color: rgba(243,243,239,.62) !important;
+
+  font-family: "IBM Plex Mono", monospace !important;
+
+  font-size: 10px !important;
+
+  line-height: 1.45 !important;
+}
+
+.capability-row .capability-detail-uses li::before {
+  content: "—" !important;
+
+  position: absolute !important;
+
+  left: 0 !important;
+
+  color: rgba(243,243,239,.28) !important;
+}
+
+.capability-row .capability-detail-output {
+  grid-column: 1 / -1 !important;
+
+  padding-top: 4px !important;
+}
+
+.capability-row .capability-detail-output strong {
+  display: block !important;
+
+  color: #f3f3ef !important;
+
+  font-family: "IBM Plex Mono", monospace !important;
+
+  font-size: 10px !important;
+
+  font-weight: 400 !important;
+
+  letter-spacing: .08em !important;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 700px) {
+
+  .capability-row .capability-trigger {
+    grid-template-columns:
+      42px
+      minmax(0, 1fr)
+      30px !important;
+
+    min-height: 90px !important;
+
+    padding: 24px 0 !important;
+  }
+
+  .capability-row .capability-detail-inner {
+    grid-template-columns: 1fr !important;
+
+    gap: 28px !important;
+
+    padding-left: 42px !important;
+    padding-right: 20px !important;
+  }
+
+  .capability-row .capability-detail-output {
+    grid-column: auto !important;
+  }
+}
+
+
+/* =========================================================
+   MISSION SWITCH NOTICE
+   Show only once mission switching is locked mid-session.
+   ========================================================= */
+
+.mission-picker:has(.mission-option:disabled)::after {
+  content: "MISSION LOCKED  ·  RESET SESSION TO SWITCH MISSIONS";
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  grid-column: 1 / -1;
+
+  min-height: 34px;
+
+  padding: 8px 12px;
+
+  border-top: 1px solid rgba(247,247,244,.10);
+
+  background: rgba(247,247,244,.025);
+
+  color: rgba(247,247,244,.48);
+
+  font-family: "DM Mono", monospace;
+  font-size: 8px;
+  letter-spacing: .12em;
+  text-align: center;
+}
+
+/* Make it slightly clearer on hover/focus-capable screens */
+.mission-picker:has(.mission-option:disabled)::after {
+  box-sizing: border-box;
+}
+
+@media (max-width: 560px) {
+  .mission-picker:has(.mission-option:disabled)::after {
+    font-size: 7px;
+    line-height: 1.5;
+    padding: 9px 14px;
+  }
+}
+
+
+/* =========================================================
+   MISSION LOCK MODAL
+   Appears when a user attempts to switch missions
+   after a live session has already started.
+   ========================================================= */
+
+.mission-lock-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+
+  display: grid;
+  place-items: center;
+
+  padding: 24px;
+
+  background: rgba(0, 0, 0, .72);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  animation: mission-lock-fade .18s ease both;
+}
+
+.mission-lock-modal {
+  width: min(520px, calc(100vw - 40px));
+
+  padding: 30px;
+
+  border: 1px solid rgba(247,247,244,.28);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(25,26,25,.98),
+      rgba(10,11,10,.98)
+    );
+
+  box-shadow:
+    0 35px 100px rgba(0,0,0,.55);
+
+  animation: mission-lock-enter .25s cubic-bezier(.2,.8,.2,1) both;
+}
+
+.mission-lock-index {
+  margin-bottom: 28px;
+
+  color: rgba(247,247,244,.38);
+
+  font-family: "DM Mono", monospace;
+  font-size: 8px;
+  letter-spacing: .16em;
+}
+
+.mission-lock-mark {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  margin-bottom: 24px;
+
+  border: 1px solid rgba(247,247,244,.32);
+
+  color: #0c0d0b;
+  background: var(--stella-feature-white, #f5f5f2);
+
+  font-family: "DM Mono", monospace;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.mission-lock-label {
+  margin-bottom: 10px;
+
+  color: rgba(247,247,244,.42);
+
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: .18em;
+}
+
+.mission-lock-copy h2 {
+  margin: 0;
+
+  color: #f5f5f2;
+
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(38px, 5vw, 52px);
+  font-weight: 500;
+  line-height: .92;
+  letter-spacing: -.045em;
+}
+
+.mission-lock-copy p {
+  max-width: 430px;
+
+  margin: 20px 0 30px;
+
+  color: rgba(247,247,244,.52);
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.mission-lock-dismiss {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 14px 16px;
+
+  border: 1px solid rgba(247,247,244,.25);
+
+  background: transparent;
+
+  color: #f5f5f2;
+
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: .14em;
+
+  cursor: pointer;
+
+  transition:
+    background .2s ease,
+    color .2s ease,
+    border-color .2s ease;
+}
+
+.mission-lock-dismiss:hover {
+  border-color: #f5f5f2;
+  background: #f5f5f2;
+  color: #0c0d0b;
+}
+
+@keyframes mission-lock-fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes mission-lock-enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 560px) {
+  .mission-lock-overlay {
+    padding: 16px;
+  }
+
+  .mission-lock-modal {
+    width: 100%;
+    padding: 24px;
+  }
+
+  .mission-lock-copy h2 {
+    font-size: 42px;
+  }
+}
+

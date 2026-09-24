@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useState } from "react";
 import Navbar from "@/components/site/Navbar";
 import StellaHero from "@/components/site/StellaHero";
 import SystemReveal from "@/components/site/SystemReveal";
@@ -38,14 +41,88 @@ const resources = [
 ];
 
 const capabilities = [
-  ["01", "Pose estimation", "Understanding body position and movement."],
-  ["02", "Hand tracking", "Following precise hand movement and interaction."],
-  ["03", "Object detection", "Recognizing objects involved in the experiment."],
-  ["04", "Activity recognition", "Interpreting movement as meaningful action."],
-  ["05", "Procedure validation", "Checking actions against the expected sequence."],
+  {
+    number: "01",
+    title: "Pose estimation",
+    description: "Understanding body position and movement.",
+    detail:
+      "STELLA tracks the operator's body through skeletal landmarks, providing the spatial context needed to understand where the operator is and how they are moving.",
+    uses: [
+      "Detect operator presence",
+      "Understand body posture and movement",
+      "Identify movement toward or away from the experiment",
+      "Provide context for activity recognition",
+    ],
+    output: "BODY LANDMARKS → POSITION → MOVEMENT EVIDENCE",
+  },
+  {
+    number: "02",
+    title: "Hand tracking",
+    description: "Following precise hand movement and interaction.",
+    detail:
+      "STELLA tracks hand landmarks and fingertip positions to understand precise manipulation and determine when the operator approaches or interacts with an experiment object.",
+    uses: [
+      "Detect reaching",
+      "Determine proximity to experiment objects",
+      "Establish hand-object interaction",
+      "Detect interaction release",
+      "Support grasp and manipulation recognition",
+    ],
+    output: "HAND LANDMARKS → PROXIMITY → INTERACTION",
+  },
+  {
+    number: "03",
+    title: "Object detection",
+    description: "Recognizing objects involved in the experiment.",
+    detail:
+      "STELLA identifies objects within the experiment scene and uses their spatial location as evidence when interpreting hand movement and manipulation.",
+    uses: [
+      "Locate experiment targets",
+      "Associate hand movement with objects",
+      "Establish interaction candidates",
+      "Track object movement during manipulation",
+    ],
+    output: "OBJECT → BOUNDING BOX → TARGET",
+  },
+  {
+    number: "04",
+    title: "Activity recognition",
+    description: "Interpreting movement as meaningful action.",
+    detail:
+      "STELLA combines pose, hand, and object evidence over time instead of treating every frame as an isolated classification. This turns visual observations into meaningful actions.",
+    uses: [
+      "PERSON DETECTED",
+      "HAND APPROACHING TARGET",
+      "HAND-OBJECT CONTACT",
+      "SUSTAINED INTERACTION",
+      "OBJECT MOVEMENT",
+      "INTERACTION RELEASE",
+      "OPERATOR WITHDRAWAL",
+    ],
+    output: "REACH → GRASP → MOVE → PLACE → WITHDRAW",
+  },
+  {
+    number: "05",
+    title: "Procedure validation",
+    description: "Checking actions against the expected sequence.",
+    detail:
+      "STELLA evaluates detected actions against the expected experimental procedure, allowing the system to understand where the operator is within the sequence and record deviations.",
+    uses: [
+      "Operator detected",
+      "Reach",
+      "Grasp",
+      "Move",
+      "Place",
+      "Withdraw",
+      "Mission complete",
+    ],
+    output: "VISION EVENTS → PROCEDURE STATE → VALIDATION",
+  },
 ];
 
 export default function Home() {
+  const [openCapability, setOpenCapability] = useState<string | null>(null);
+
   return (
     <main className="stella-home">
       {/* GLOBAL MOTION */}
@@ -439,22 +516,78 @@ export default function Home() {
 
         <div className="capability-grid">
 
-          {capabilities.map(([number, title, description]) => (
-            <div
-              className="capability-row"
-              key={number}
-            >
-              <span>{number}</span>
+          {capabilities.map((capability) => {
+            const isOpen = openCapability === capability.number;
 
-              <h3>{title}</h3>
+            return (
+              <div
+                className={`capability-row ${isOpen ? "is-open" : ""}`}
+                key={capability.number}
+              >
+                <button
+                  type="button"
+                  className="capability-trigger"
+                  onClick={() =>
+                    setOpenCapability(
+                      isOpen ? null : capability.number
+                    )
+                  }
+                  aria-expanded={isOpen}
+                >
+                  <span className="capability-number">
+                    {capability.number}
+                  </span>
 
-              <p>{description}</p>
+                  <div className="capability-main">
+                    <h3>{capability.title}</h3>
 
-              <span className="capability-mark">
-                +
-              </span>
-            </div>
-          ))}
+                    <p>{capability.description}</p>
+                  </div>
+
+                  <span className="capability-mark">
+                    {isOpen ? "−" : "+"}
+                  </span>
+                </button>
+
+                <div
+                  className="capability-detail"
+                  aria-hidden={!isOpen}
+                >
+                  <div className="capability-detail-inner">
+
+                    <div className="capability-detail-copy">
+                      <span className="capability-detail-label">
+                        WHAT IT DOES
+                      </span>
+
+                      <p>{capability.detail}</p>
+                    </div>
+
+                    <div className="capability-detail-uses">
+                      <span className="capability-detail-label">
+                        STELLA USES IT TO
+                      </span>
+
+                      <ul>
+                        {capability.uses.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div className="capability-detail-output">
+                      <span className="capability-detail-label">
+                        OUTPUT
+                      </span>
+
+                      <strong>{capability.output}</strong>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            );
+          })}
 
         </div>
 
