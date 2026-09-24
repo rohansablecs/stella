@@ -15974,3 +15974,333 @@ html body .live-page .sequence-card {
   }
 }
 
+
+/* =========================================================
+   FEATURE PAGE NAV — CONTEXTUAL
+   STELLA / HOME / CURRENT PAGE
+   ========================================================= */
+
+.stella-navbar-context {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+
+  height: 42px !important;
+  padding: 0 14px 0 4px !important;
+
+  font-family: "IBM Plex Mono", monospace !important;
+  font-size: 10px !important;
+
+  white-space: nowrap !important;
+}
+
+.stella-navbar-home {
+  display: flex !important;
+  align-items: center !important;
+
+  height: 32px !important;
+  padding: 0 11px !important;
+
+  border-radius: 999px !important;
+
+  color: rgba(17,17,17,.52) !important;
+
+  text-decoration: none !important;
+
+  transition:
+    color 180ms ease,
+    background 180ms ease !important;
+}
+
+.stella-navbar-home:hover {
+  color: #111 !important;
+  background: rgba(0,0,0,.055) !important;
+}
+
+.stella-navbar-divider {
+  color: rgba(17,17,17,.22) !important;
+
+  user-select: none !important;
+}
+
+.stella-navbar-current {
+  display: flex !important;
+  align-items: center !important;
+
+  height: 32px !important;
+  padding: 0 11px !important;
+
+  border-radius: 999px !important;
+
+  background: #111 !important;
+
+  color: #fff !important;
+
+  font-family: "IBM Plex Mono", monospace !important;
+  font-size: 10px !important;
+
+  letter-spacing: .01em !important;
+}
+
+
+/* ---------------------------------------------------------
+   FEATURE NAV — REMOVE OLD LAUNCH / PAGE LINKS
+   --------------------------------------------------------- */
+
+.live-page .stella-navbar-launch,
+.simulations-page .stella-navbar-launch,
+.simulation-detail-page .stella-navbar-launch {
+  display: none !important;
+}
+
+.live-page .stella-navbar-links,
+.simulations-page .stella-navbar-links,
+.simulation-detail-page .stella-navbar-links {
+  display: none !important;
+}
+
+
+/* ---------------------------------------------------------
+   FEATURE NAV WIDTH
+   --------------------------------------------------------- */
+
+.live-page .stella-navbar-inner,
+.simulations-page .stella-navbar-inner,
+.simulation-detail-page .stella-navbar-inner {
+  min-width: 0 !important;
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width: 560px) {
+  .stella-navbar-context {
+    gap: 5px !important;
+    padding-right: 6px !important;
+  }
+
+  .stella-navbar-home,
+  .stella-navbar-current {
+    padding-left: 8px !important;
+    padding-right: 8px !important;
+  }
+}
+
+
+/* =========================================================
+   LIVE — MISSION OUTCOME
+   ========================================================= */
+
+.mission-outcome {
+  position: fixed;
+
+  top: 94px;
+  left: 50%;
+
+  z-index: 2147483646;
+
+  width: min(520px, calc(100vw - 32px));
+
+  display: grid;
+
+  grid-template-columns: 48px minmax(0, 1fr) 28px;
+
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 17px 18px;
+
+  transform: translateX(-50%);
+
+  border: 1px solid;
+
+  background: rgba(10, 11, 10, .97);
+
+  box-shadow:
+    0 24px 80px rgba(0,0,0,.48);
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  animation:
+    mission-outcome-in
+    .42s cubic-bezier(.16,1,.3,1) both;
+}
+
+.mission-outcome-success {
+  border-color: rgba(93, 201, 111, .48);
+}
+
+.mission-outcome-failure {
+  border-color: rgba(238, 83, 83, .48);
+}
+
+
+/* MARK */
+
+.mission-outcome-mark {
+  width: 42px;
+  height: 42px;
+
+  display: grid;
+  place-items: center;
+
+  border: 1px solid;
+
+  font-family: "DM Mono", monospace;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.mission-outcome-success .mission-outcome-mark {
+  border-color: rgba(93,201,111,.55);
+  background: rgba(93,201,111,.10);
+  color: #73d789;
+}
+
+.mission-outcome-failure .mission-outcome-mark {
+  border-color: rgba(238,83,83,.55);
+  background: rgba(238,83,83,.10);
+  color: #ff7777;
+}
+
+
+/* COPY */
+
+.mission-outcome-copy {
+  min-width: 0;
+}
+
+.mission-outcome-kicker {
+  display: block;
+
+  margin-bottom: 4px;
+
+  font-family: "DM Mono", monospace;
+  font-size: 8px;
+  letter-spacing: .15em;
+}
+
+.mission-outcome-success .mission-outcome-kicker {
+  color: #73d789;
+}
+
+.mission-outcome-failure .mission-outcome-kicker {
+  color: #ff7777;
+}
+
+.mission-outcome-copy strong {
+  display: block;
+
+  color: #f3f3ef;
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.mission-outcome-copy p {
+  margin: 4px 0 0;
+
+  color: rgba(243,243,239,.48);
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+
+/* CLOSE */
+
+.mission-outcome-close {
+  width: 28px;
+  height: 28px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: rgba(243,243,239,.38);
+
+  font-family: "DM Sans", sans-serif;
+  font-size: 20px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.mission-outcome-close:hover {
+  color: #f3f3ef;
+}
+
+
+/* ANIMATION */
+
+@keyframes mission-outcome-in {
+  from {
+    opacity: 0;
+    transform:
+      translate(-50%, -18px)
+      scale(.97);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translate(-50%, 0)
+      scale(1);
+  }
+}
+
+
+/* MOBILE */
+
+@media (max-width: 560px) {
+  .mission-outcome {
+    top: 78px;
+
+    width: calc(100vw - 22px);
+
+    grid-template-columns:
+      40px
+      minmax(0, 1fr)
+      24px;
+
+    gap: 12px;
+
+    padding: 14px;
+  }
+
+  .mission-outcome-mark {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+
+/* =========================================================
+   STELLA — TIGHTEN FEATURE PAGE TOP RHYTHM
+   /live + /simulations
+   ========================================================= */
+
+html body .live-page .live-shell,
+html body .simulations-page .simulations-shell {
+  padding-top: 42px !important;
+}
+
+/* Keep the mobile spacing tight too */
+@media (max-width: 700px) {
+  html body .live-page .live-shell,
+  html body .simulations-page .simulations-shell {
+    padding-top: 32px !important;
+  }
+}
+
